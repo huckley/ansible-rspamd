@@ -11,3 +11,10 @@ rspamd_antivirus: 'clamav'
 rspamd_antivirus_action: "reject"
 rspamd_antivirus_servers: "/var/run/clamav/clamd.ctl"
 rspamd_antivirus_symbol: "CLAM_VIRUS"
+rspam_dkim_keys_directory: /var/lib/rspamd/dkim
+rspam_dkim_signing_enable: false
+rspam_dkim_signing_domains:
+  - example.com
+  - example.net
+rspam_dkim_signing_selector: dkim
+rspam_dkim_signing_allow_username_mismatch: false

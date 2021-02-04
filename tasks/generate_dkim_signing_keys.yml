@@ -1,0 +1,25 @@
+---
+- name: Creates directory for dkim keys
+  file:
+    path: "{{ rspam_dkim_directory }}"
+    state: directory
+    owner: _rspamd
+    group: _rspamd
+    mode: 0550
+
+- name: generate dikm keys
+  shell: "rspamadm dkim_keygen -s {{ rspam_dkim_signing_selector }} -b 2048 -d {{ item }} -k {{ rspam_dkim_keys_directory }}/{{ item }}.{{ rspam_dkim_signing_selector }}.key > {{ rspam_dkim_keys_directory }}/{{ item }}.{{ rspam_dkim_signing_selector }}.txt"
+  args:
+    creates: "{{ rspam_dkim_keys_directory }}/{{ item }}.{{ rspam_dkim_signing_selector }}.key"
+  notify: restart rspamd
+  loop: "{{ rspam_dkim_signing_domains }}"
+  when: {{ rspam_dkim_signing_enable }}
+
+- name: change ownership and permissons of dkim files
+  file:
+    path: "{{ rspam_dkim_keys_directory }}/{{ item }}.{{ rspam_dkim_signing_selector }}.key"
+    owner: _rspamd
+    group: _rspamd
+    mode: 0440
+  loop: "{{ rspam_dkim_signing_domains }}"
+  when: {{ rspam_dkim_signing_enable }}

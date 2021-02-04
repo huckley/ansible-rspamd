@@ -1,0 +1,4 @@
+selector = "{{ rspam_dkim_signing_selector }}";
+allow_username_mismatch = {{ rspam_dkim_signing_allow_username_mismatch }};
+enabled = {{ rspamd_dkim_signing_enable }};
+path = "{{ rspam_dkim_keys_directory }}/$domain.$selector.key";

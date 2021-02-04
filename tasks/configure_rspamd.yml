@@ -101,3 +101,12 @@
     group: root
     mode: 0644
   notify: restart rspamd
+
+- name: dkim signing
+  template:
+    src: dkim_signing.conf.j2
+    dest: /etc/rspamd/local.d/dkim_signing.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart rspamd
