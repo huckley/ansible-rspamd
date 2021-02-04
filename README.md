@@ -23,6 +23,8 @@ To install role, add following line to **ansible-galaxy** requirements file
 ```
 - name: geerlingguy.redis
   version: 1.7.0
+- name: geerlingguy.clamav
+  version: 1.3.2
 - name: jas02.rspamd
 ```
 
