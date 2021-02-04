@@ -8,7 +8,13 @@
     mode: 0550
 
 - name: generate dikm keys
-  shell: "rspamadm dkim_keygen -s {{ rspam_dkim_signing_selector }} -b 2048 -d {{ item }} -k {{ rspam_dkim_keys_directory }}/{{ item }}.{{ rspam_dkim_signing_selector }}.key > {{ rspam_dkim_keys_directory }}/{{ item }}.{{ rspam_dkim_signing_selector }}.txt"
+  shell: >
+    rspamadm dkim_keygen
+    -s "{{ rspam_dkim_signing_selector }}"
+    -b 2048
+    -d "{{ item }}"
+    -k "{{ rspam_dkim_keys_directory }}/{{ item }}.{{ rspam_dkim_signing_selector }}.key" >
+    "{{ rspam_dkim_keys_directory }}/{{ item }}.{{ rspam_dkim_signing_selector }}.txt"
   args:
     creates: "{{ rspam_dkim_keys_directory }}/{{ item }}.{{ rspam_dkim_signing_selector }}.key"
   notify: restart rspamd
