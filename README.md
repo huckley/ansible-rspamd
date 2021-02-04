@@ -15,6 +15,7 @@ please take a look to defaults/main.yml
 Dependencies
 ------------
 This role needs a installed and configured redis. (I suggest geerlingguy.redis)
+Also a installed and configured clamav will be nice. (geerlingguy.clamav)
 
 Example Playbook
 ----------------
