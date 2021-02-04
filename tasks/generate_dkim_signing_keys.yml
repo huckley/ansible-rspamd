@@ -13,7 +13,7 @@
     creates: "{{ rspam_dkim_keys_directory }}/{{ item }}.{{ rspam_dkim_signing_selector }}.key"
   notify: restart rspamd
   loop: "{{ rspam_dkim_signing_domains }}"
-  when: "{{ rspam_dkim_signing_enable }}"
+  when: rspam_dkim_signing_enable
 
 - name: change ownership and permissons of dkim files
   file:
@@ -22,4 +22,4 @@
     group: _rspamd
     mode: 0440
   loop: "{{ rspam_dkim_signing_domains }}"
-  when: "{{ rspam_dkim_signing_enable }}"
+  when: rspam_dkim_signing_enable
