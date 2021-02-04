@@ -7,3 +7,7 @@ rspamd_controller_port: 11334
 rspamd_bayes_backend: redis
 rspamd_bayes_server: "127.0.0.1"
 rspamd_redis_server: "127.0.0.1"
+rspamd_antivirus: 'clamav'
+rspamd_antivirus_action: "reject"
+rspamd_antivirus_servers: "/var/run/clamav/clamd.ctl"
+rspamd_antivirus_symbol: "CLAM_VIRUS"

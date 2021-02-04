@@ -93,3 +93,11 @@
     mode: 0644
   notify: restart rspamd
 
+- name: where to find antivirus
+  template:
+    src: antivirus.conf.j2
+    dest: /etc/rspamd/local.d/antivirus.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart rspamd
